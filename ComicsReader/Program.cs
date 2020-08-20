@@ -20,6 +20,6 @@ namespace ComicsReader
           Host.CreateDefaultBuilder(args)
               .ConfigureWebHostDefaults(webBuilder => {
                  webBuilder.UseStartup<Startup>();
-              }); 
+              });
    }
 }

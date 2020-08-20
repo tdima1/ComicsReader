@@ -14,5 +14,9 @@ namespace ComicsReader.Models
       public Category Category { get; set; }
       public bool IsPopular { get; set; }
 
+      public override string ToString()
+      {
+         return $"{Title}, {Category.Name}, \nPrice: {Price}";
+      }
    }
 }

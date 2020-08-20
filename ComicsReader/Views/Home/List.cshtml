@@ -1,0 +1,16 @@
+﻿@model ComicsReader.ViewModels.ComicBookListViewModel
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>Comic Reader</h1>
+
+    @foreach(var comicBook in Model.ComicBooks) {
+        <div>@comicBook.ToString()</div>
+    }
+
+    <div>@Model.Category</div>
+
+</body>
+</html>

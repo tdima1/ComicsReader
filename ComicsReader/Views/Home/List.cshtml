@@ -1,16 +1,19 @@
-﻿@model ComicsReader.ViewModels.ComicBookListViewModel
+﻿@model ComicBookListViewModel
 
-<!DOCTYPE html>
-<html>
-<body>
+<h1>Comic Reader</h1>
+@foreach(var comicBook in Model.ComicBooks) {
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@comicBook.ImageThumbnailUrl" alt="">
+            <div class="caption">
+                <h3 class="pull-right">@comicBook.Price.ToString("c")</h3>
+                <h3>
+                    <a>@comicBook.Title</a>
+                </h3>
+                <p>@comicBook.Category.Name</p>
+            </div>
+        </div>
+    </div>
+}
 
-    <h1>Comic Reader</h1>
-
-    @foreach(var comicBook in Model.ComicBooks) {
-        <div>@comicBook.ToString()</div>
-    }
-
-    <div>@Model.Category</div>
-
-</body>
-</html>
+<div>@Model.Category</div>

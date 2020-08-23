@@ -13,6 +13,7 @@ namespace ComicsReader.Models
       public decimal Price { get; set; }
       public Category Category { get; set; }
       public bool IsPopular { get; set; }
+      public string ImageThumbnailUrl { get; set; }
 
       public override string ToString()
       {

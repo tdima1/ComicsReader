@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ComicsReader.Models;
+using ComicsReader.Models.DbContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,18 +16,21 @@ namespace ComicsReader
 {
    public class Startup
    {
+      public IConfiguration Configuration { get; }
+
       public Startup(IConfiguration configuration)
       {
          Configuration = configuration;
       }
 
-      public IConfiguration Configuration { get; }
-
       // This method gets called by the runtime. Use this method to add services to the container.
       public void ConfigureServices(IServiceCollection services)
       {
-         services.AddScoped<IComicBookRepository, MockComicBookRepository>();
-         services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+         services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+         services.AddScoped<IComicBookRepository, ComicBookRepository>();
+         services.AddScoped<ICategoryRepository, CategoryRepository>();
          services.AddControllersWithViews();
       }
 
